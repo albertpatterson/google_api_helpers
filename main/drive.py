@@ -13,10 +13,28 @@
 #         print('Files:')
 #         for item in items:
 #             print(u'{0} ({1})'.format(item['name'], item['id']))
-
+from enum import Enum
 from main import auth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+
+# SCOPES = {
+#     'drive.metadata.readonly': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+#     'drive.metadata': 'https://www.googleapis.com/auth/drive.metadata',
+#     'drive.readonly': 'https://www.googleapis.com/auth/drive.readonly',
+#     'drive': 'https://www.googleapis.com/auth/drive,'
+# }
+
+
+class Scopes:
+    drive_metadata_readonly = 'https://www.googleapis.com/auth/drive.metadata.readonly'
+    drive_metadata = 'https://www.googleapis.com/auth/drive.metadata'
+    drive_readonly = 'https://www.googleapis.com/auth/drive.readonly'
+    drive = 'https://www.googleapis.com/auth/drive'
+
+
+class MimeTypes:
+    sheet = 'application/vnd.google-apps.spreadsheet'
 
 
 def _getService(scopes):
@@ -48,21 +66,21 @@ def list(q=""):
     service = getMetadataReadonlyService()
     filesService = service.files()
 
-    responses = []
+    files = []
     page_token = None
     while True:
         response = filesService.list(q=q,
                                      spaces='drive',
                                      fields='nextPageToken, files(id, name, description)',
                                      pageToken=page_token).execute()
-        responses.append(response)
+        files += response['files']
         # for file in response.get('files', []):
         #     # Process change
         #     print 'Found file: %s (%s)' % (file.get('name'), file.get('id'))
         page_token = response.get('nextPageToken', None)
         if page_token is None:
             break
-    return responses
+    return files
 
 
 def createBlank(name, parents, mimeType):
@@ -89,3 +107,7 @@ def createBlank(name, parents, mimeType):
 
 def createBlankSheet(name, parents):
     return createBlank(name, parents, 'application/vnd.google-apps.spreadsheet')
+
+
+def delete(id):
+    return getService().files().delete(fileId=id).execute()

@@ -28,7 +28,7 @@ def _storeCreds(creds):
         pickle.dump(creds, token)
 
 
-def getCreds(scopes, resetScopes=False):
+def getCreds(scopes, resetScopes=False, credentialsLocation=storedCredentialsLocation):
 
     allScopes = list(scopes)
 
@@ -44,7 +44,7 @@ def getCreds(scopes, resetScopes=False):
         # else do nothing, old creds are ok
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            storedCredentialsLocation, allScopes)
+            credentialsLocation, allScopes)
         creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         _storeCreds(creds)
