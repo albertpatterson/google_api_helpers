@@ -1,5 +1,5 @@
-from main import auth
-from main import drive
+from ... import auth
+from ... import drive
 import os
 import pytest
 

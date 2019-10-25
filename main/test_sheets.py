@@ -1,7 +1,7 @@
-from main import auth
-from main import drive
-from main import sheets as spreadsheets
-from utils.test import drive as test_drive
+from . import auth
+from . import drive
+from . import sheets as spreadsheets
+from .utils.test import drive as test_drive
 import pytest
 
 

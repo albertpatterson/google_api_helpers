@@ -1,4 +1,4 @@
-from main import auth
+from . import auth
 from googleapiclient.discovery import build
 
 
