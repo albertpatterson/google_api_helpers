@@ -2,6 +2,7 @@ from ... import auth
 from ... import drive
 import os
 import pytest
+from pathlib import Path
 
 
 def cleanDrive():
@@ -12,12 +13,10 @@ def cleanDrive():
 
 
 def getTestCredentials():
-    dirname = os.path.dirname(__file__)
+    maindir = Path(os.path.dirname(__file__)).parent.parent
     testCredentialsLocation = storedCredentialsLocation = os.path.join(
-        dirname, 'not_shared/test_credentials.json')
-    creds = auth.getCreds([drive.Scopes.drive],
-                          True, testCredentialsLocation)
-    return creds
+        maindir, 'not_shared/test_credentials.json')
+    auth.setStoredCredentialsLocation(testCredentialsLocation)
 
 
 class WithDriveCleaningFixture:
@@ -26,3 +25,4 @@ class WithDriveCleaningFixture:
         cleanDrive()
         yield
         cleanDrive()
+        # auth.clearStoredCredentialsLocation()

@@ -4,14 +4,35 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import os
 from googleapiclient.errors import HttpError
+from pathlib import Path
 
 dirname = os.path.dirname(__file__)
-storedTokenLocation = os.path.join(dirname, 'not_shared/token.pickle')
-storedCredentialsLocation = os.path.join(
-    dirname, 'not_shared/credentials.json')
+storedTokenLocation = None
+storedCredentialsLocation = None
+
+
+def setStoredCredentialsLocation(location):
+    global storedCredentialsLocation
+    global storedTokenLocation
+    storedCredentialsLocation = location
+    storedTokenLocation = None if location == None else _getStoredTokenLocation(
+        location)
+
+    print()
+    print('setStoredCredentialsLocation',
+          storedCredentialsLocation, storedTokenLocation)
+    print()
+
+
+def clearStoredCredentialsLocation(location):
+    setStoredCredentialsLocation(None)
 
 
 def _getExistingCreds():
+
+    if(storedTokenLocation == None):
+        return None
+
     existingCreds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -24,11 +45,16 @@ def _getExistingCreds():
 
 
 def _storeCreds(creds):
+    print()
+    print('_storeCreds',
+          storedCredentialsLocation, storedTokenLocation)
+    print()
+
     with open(storedTokenLocation, 'wb') as token:
         pickle.dump(creds, token)
 
 
-def getCreds(scopes, resetScopes=False, credentialsLocation=storedCredentialsLocation):
+def getCreds(scopes, resetScopes=False):
 
     allScopes = list(scopes)
 
@@ -44,34 +70,20 @@ def getCreds(scopes, resetScopes=False, credentialsLocation=storedCredentialsLoc
         # else do nothing, old creds are ok
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            credentialsLocation, allScopes)
+            storedCredentialsLocation, allScopes)
         creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
+
         _storeCreds(creds)
 
     return creds
 
 
-# def _hasAllScopes(creds, scopes):
-    # hasAll = True
-    # print(creds)
-    # for scope in scopes:
-    #     hasAll = hasAll and creds.has_scopes(scopes)
-    #     if not hasAll:
-    #         break
-    # return hasAll
-
-
-# def retyWithExpandedScope(operation, requiredScopes):
-#     try:
-#         return operation()
-#     except HttpError as httpError:
-#         if httpError.resp['www-authenticate'].find('insufficient_scope') != -1:
-#             getCreds(requiredScopes)
-#             return operation()
-#         else:
-#             raise httpError
+def _getStoredTokenLocation(storedCredentialsLocation):
+    return os.path.join(Path(storedCredentialsLocation).parent, 'token.pickle')
 
 
 def clearToken():
+    storedTokenLocation = _getStoredTokenLocation(
+        storedCredentialsLocation)
     os.remove(storedTokenLocation)
