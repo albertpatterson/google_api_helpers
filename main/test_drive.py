@@ -32,3 +32,22 @@ class TestDrive(test_drive.WithDriveCleaningFixture):
         createdSheet = {'id': createdSheetId, 'name': testName}
 
         assert contents == [createdSheet]
+
+    def test_list_filtered(self):
+        testName1 = "testing_created_1"
+        createdSheetId1 = drive.createBlank(
+            testName1, [], drive.MimeTypes.sheet)
+
+        testName2 = "testing_created_2"
+        createdSheetId2 = drive.createBlank(
+            testName2, [], drive.MimeTypes.sheet)
+
+        testName3 = "testing_created_3"
+        createdSheetId3 = drive.createBlank(
+            testName3, [], drive.MimeTypes.sheet)
+
+        matchedContents = drive.list("name = 'testing_created_2'")
+
+        assert matchedContents == [
+            {'id': createdSheetId2, 'name': testName2}
+        ]
