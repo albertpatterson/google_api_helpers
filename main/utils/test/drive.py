@@ -24,4 +24,3 @@ class WithDriveCleaningFixture:
         cleanDrive()
         yield
         cleanDrive()
-        # auth.clearStoredCredentialsLocation()
