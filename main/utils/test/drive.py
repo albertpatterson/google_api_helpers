@@ -8,7 +8,6 @@ from pathlib import Path
 def cleanDrive():
     allContents = drive.list()
     for item in allContents:
-        print(item)
         drive.delete(item['id'])
 
 

@@ -18,11 +18,6 @@ def setStoredCredentialsLocation(location):
     storedTokenLocation = None if location == None else _getStoredTokenLocation(
         location)
 
-    print()
-    print('setStoredCredentialsLocation',
-          storedCredentialsLocation, storedTokenLocation)
-    print()
-
 
 def clearStoredCredentialsLocation(location):
     setStoredCredentialsLocation(None)
@@ -45,16 +40,17 @@ def _getExistingCreds():
 
 
 def _storeCreds(creds):
-    print()
-    print('_storeCreds',
-          storedCredentialsLocation, storedTokenLocation)
-    print()
+    if(storedTokenLocation == None):
+        raise Exception("stored token locaion not set")
 
     with open(storedTokenLocation, 'wb') as token:
         pickle.dump(creds, token)
 
 
 def getCreds(scopes, resetScopes=False):
+
+    if(storedCredentialsLocation == None):
+        raise Exception("stored credential locaion not set")
 
     allScopes = list(scopes)
 
@@ -83,7 +79,7 @@ def _getStoredTokenLocation(storedCredentialsLocation):
     return os.path.join(Path(storedCredentialsLocation).parent, 'token.pickle')
 
 
-def clearToken():
+def clearStoredToken():
     storedTokenLocation = _getStoredTokenLocation(
         storedCredentialsLocation)
     os.remove(storedTokenLocation)

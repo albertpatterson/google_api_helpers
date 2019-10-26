@@ -13,7 +13,6 @@ class TestDrive(test_drive.WithDriveCleaningFixture):
 
     def test_list_empty(self):
         contents = drive.list()
-        print('contents', contents)
         assert contents == []
 
     def test_createBlank(self):
