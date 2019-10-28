@@ -56,6 +56,31 @@ def batchUpdate(spreadsheetId, range, data):
     return response
 
 
+def addSheet(spreadsheetId, sheetName):
+
+    requests = []
+
+    requests.append({
+        "addSheet": {
+            "properties": {
+                "title": sheetName,
+            }
+        }
+    })
+
+    body = {
+        'requests': requests
+    }
+
+    service = getService()
+    spreadsheetsService = service.spreadsheets()
+    request = spreadsheetsService.batchUpdate(
+        spreadsheetId=spreadsheetId, body=body)
+    response = request.execute()
+
+    return response
+
+
 def create(data, title='api generated', startRow=0, startColumn=0):
     service = getService()
 
