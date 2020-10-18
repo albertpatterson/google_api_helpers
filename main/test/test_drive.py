@@ -1,12 +1,14 @@
-from . import auth
-from . import drive
-from .utils.test import drive as test_drive
+from ..src import auth
+from ..src import drive
+from .utils import drive as test_drive
+from .utils import auth as test_auth
+
 import pytest
 
 
 @pytest.fixture(scope="session", autouse=True)
 def getTestCredentials():
-    return test_drive.getTestCredentials()
+    return test_auth.getTestCredentials()
 
 
 class TestDrive(test_drive.WithDriveCleaningFixture):
