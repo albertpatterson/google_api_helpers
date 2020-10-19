@@ -1,6 +1,6 @@
-from ...src import auth
-from ...src import email
-from ..constants import TEST_USER_EMAIL_ADDRESS
+from src import auth
+from src import email
+from test.constants import TEST_USER_EMAIL_ADDRESS
 import os
 import pytest
 from pathlib import Path

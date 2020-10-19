@@ -1,7 +1,7 @@
-from ..src import email
+from src import email
 import pytest
 
-from .utils import auth as test_auth
+from test.utils import auth as test_auth
 
 
 @pytest.fixture(scope="session", autouse=True)

@@ -1,7 +1,7 @@
-from ...src import auth
-from ...src import drive
-from ...src import email
-from . import auth as test_auth
+from src import auth
+from src import drive
+from src import email
+from test.utils import auth as test_auth
 import os
 import pytest
 from pathlib import Path

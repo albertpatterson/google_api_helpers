@@ -3,3 +3,8 @@ env
 __pycache__
 not_shared
 junk
+.eggs
+.pytest_cache
+dist
+*.egg-info
+build

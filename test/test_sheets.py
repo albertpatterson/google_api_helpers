@@ -1,8 +1,8 @@
-from ..src import auth
-from ..src import drive
-from ..src import sheets as spreadsheets
-from .utils import drive as test_drive
-from .utils import auth as test_auth
+from src import auth
+from src import drive
+from src import sheets as spreadsheets
+from test.utils import drive as test_drive
+from test.utils import auth as test_auth
 
 import pytest
 
