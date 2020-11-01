@@ -1,11 +1,11 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='google_api_helpers',
+    name='apatterson189_google_api_helpers',
     packages=find_packages(include=['src']),
     version='0.1.0',
-    description='My first Python library',
-    author='Me',
+    description='LIbrary of helpers for using google apis',
+    author='Albert Patterson',
     license='MIT',
     install_requires=[
         'atomicwrites==1.4.0',
@@ -48,4 +48,10 @@ setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest==6.1.1'],
     test_suite='test',
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
 )
