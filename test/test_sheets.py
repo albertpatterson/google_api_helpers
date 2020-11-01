@@ -1,6 +1,6 @@
-from src import auth
-from src import drive
-from src import sheets as spreadsheets
+from google_api_helpers import auth
+from google_api_helpers import drive
+from google_api_helpers import sheets as spreadsheets
 from test.utils import drive as test_drive
 from test.utils import auth as test_auth
 

@@ -1,4 +1,4 @@
-from src import email
+from google_api_helpers import email
 import pytest
 
 from test.utils import auth as test_auth

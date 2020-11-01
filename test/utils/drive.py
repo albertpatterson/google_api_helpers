@@ -1,6 +1,6 @@
-from src import auth
-from src import drive
-from src import email
+from google_api_helpers import auth
+from google_api_helpers import drive
+from google_api_helpers import email
 from test.utils import auth as test_auth
 import os
 import pytest

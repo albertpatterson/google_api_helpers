@@ -1,5 +1,5 @@
-from src import auth
-from src import email
+from google_api_helpers import auth
+from google_api_helpers import email
 from test.constants import TEST_USER_EMAIL_ADDRESS
 import os
 import pytest

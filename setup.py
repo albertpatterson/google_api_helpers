@@ -1,10 +1,15 @@
 from setuptools import find_packages, setup
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='apatterson189_google_api_helpers',
-    packages=find_packages(include=['src']),
-    version='0.1.0',
+    packages=find_packages(include=['google_api_helpers']),
+    version='0.1.2',
     description='LIbrary of helpers for using google apis',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Albert Patterson',
     license='MIT',
     install_requires=[

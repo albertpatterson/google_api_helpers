@@ -1,16 +1,26 @@
 # google_api_helpers
 Python helpers for using google apis
 
+# install
+pip install apatterson189-google-api-helpers
+
+# Setup
+1) Create a GCP project
+2) Create a set of credentials
+3) download the credentials (as credentials.json for example)
+
+The first step of using these tools should be to provide the credentials of the GCP project that will be used to access the data, via "google_api_helpers.auth.setStoredCredentialsLocation".
+
+# usage 
+import google_api_helpers
+
 # Build
 python3 setup.py sdist bdist_wheel
 
-# install
-pip install /path/to/wheelfile.whl
-
-# upload
+# Upload
 python3 -m twine upload dist/*
 
-# test
+# Test
 python setup.py pytest
 
 # Notes
