@@ -25,7 +25,7 @@ setup(
         'google-auth-httplib2==0.0.4',
         'google-auth-oauthlib==0.4.1',
         'googleapis-common-protos==1.52.0',
-        'httplib2==0.18.1',
+        'httplib2==0.19.0',
         'idna==2.10',
         'importlib-metadata==2.0.0',
         'iniconfig==1.1.1',
