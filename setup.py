@@ -34,7 +34,7 @@ setup(
         'packaging==20.4',
         'pluggy==0.13.1',
         'protobuf==3.13.0',
-        'py==1.9.0',
+        'py==1.10.0',
         'pyasn1==0.4.8',
         'pyasn1-modules==0.2.8',
         'pycodestyle==2.6.0',
