@@ -46,7 +46,7 @@ setup(
         'six==1.15.0',
         'toml==0.10.1',
         'uritemplate==3.0.1',
-        'urllib3==1.25.10',
+        'urllib3==1.26.5',
         'wcwidth==0.2.5',
         'zipp==3.3.1',
     ],
