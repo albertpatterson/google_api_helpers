@@ -33,7 +33,7 @@ setup(
         'oauthlib==3.1.0',
         'packaging==20.4',
         'pluggy==0.13.1',
-        'protobuf==3.13.0',
+        'protobuf==3.18.3',
         'py==1.9.0',
         'pyasn1==0.4.8',
         'pyasn1-modules==0.2.8',
