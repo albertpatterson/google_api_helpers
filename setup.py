@@ -17,7 +17,7 @@ setup(
         'attrs==20.2.0',
         'autopep8==1.5.4',
         'cachetools==4.1.1',
-        'certifi==2020.6.20',
+        'certifi==2022.12.7',
         'chardet==3.0.4',
         'google-api-core==1.22.4',
         'google-api-python-client==1.12.3',
